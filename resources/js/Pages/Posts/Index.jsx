@@ -15,7 +15,7 @@ export default function Index({ posts }) {
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        {posts.map((post) => {
+                        {posts.data.map((post) => {
                             return (
                                 <div
                                     key={post.id}
@@ -24,6 +24,10 @@ export default function Index({ posts }) {
                                     <h2 className="text-lg font-semibold text-gray-800">
                                         {post.title}
                                     </h2>
+                                    by{" "}
+                                    <span className="text-sm">
+                                        {post.user?.name || "Unknown Author"}
+                                    </span>
                                     <p className="mt-2 text-sm text-gray-600">
                                         {post.body}
                                     </p>
