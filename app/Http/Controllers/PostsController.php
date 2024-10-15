@@ -9,12 +9,21 @@ use Inertia\Inertia;
 
 class PostsController extends Controller
 {
-    function index() : \Inertia\Response {
+   public function index() : \Inertia\Response {
 
        $posts = Post::with('user')->latest()->get();
 
         return Inertia::render('Posts/Index', [
             'posts' => PostResource::collection($posts)
         ]);
+    }
+
+    public function store(Request $request) {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+       // sotore the post
     }
 }
