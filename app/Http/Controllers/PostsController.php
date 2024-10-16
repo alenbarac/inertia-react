@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+
 
 class PostsController extends Controller
 {
@@ -18,12 +21,9 @@ class PostsController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+    public function store(StorePostRequest $request) {
 
-       // sotore the post
+       $user = Auth::user();
+       $user->posts()->create($request->validated());
     }
 }
