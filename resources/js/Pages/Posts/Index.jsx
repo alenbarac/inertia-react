@@ -1,7 +1,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, router, usePage, Link } from "@inertiajs/react";
 
-export default function Index({ auth, posts }) {
+export default function Index({ auth, posts, greeting }) {
     const { data, setData, post, processing, errors, reset, clearErrors } =
         useForm({
             title: "",
@@ -29,7 +29,7 @@ export default function Index({ auth, posts }) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Posts
+                    Posts {greeting}
                 </h2>
             }
         >
