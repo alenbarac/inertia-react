@@ -34,7 +34,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'greeting' => 'Hello From Inertia Shared data.',
+            'message' => $request->session()->get('message'),
         ];
     }
 }

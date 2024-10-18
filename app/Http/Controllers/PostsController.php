@@ -25,5 +25,10 @@ class PostsController extends Controller
 
        $user = Auth::user();
        $user->posts()->create($request->validated());
+
+       return redirect()->route('posts.index')->with('message', [
+              'type' => 'success',
+              'body' => 'Post Created Successfully!'
+       ]);
     }
 }
