@@ -1,5 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, router, usePage, Link } from "@inertiajs/react";
+import toast from "react-hot-toast";
 
 export default function Index({ auth, posts, greeting }) {
     const { data, setData, post, processing, errors, reset, clearErrors } =
@@ -13,6 +14,9 @@ export default function Index({ auth, posts, greeting }) {
         post(route("posts.store"), {
             onSuccess: () => {
                 reset();
+                toast.success("Post created successfully", {
+                    position: "top-right",
+                });
             },
         });
     }
@@ -29,7 +33,7 @@ export default function Index({ auth, posts, greeting }) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Posts {greeting}
+                    Posts
                 </h2>
             }
         >
