@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Post;
+use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -29,12 +31,16 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $authUser = Auth::user();
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
             ],
             'message' => $request->session()->get('message'),
+            'can' => [
+                'post_create' => $authUser->can('create', Post::class),
+            ],
         ];
     }
 }
