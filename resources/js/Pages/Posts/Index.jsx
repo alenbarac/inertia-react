@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 export default function Index({ auth, posts }) {
     const { data, setData, post, processing, errors, reset, clearErrors } =
-        useForm({
+        useForm("StorePosts", {
             title: "",
             body: "",
         });
@@ -16,7 +16,7 @@ export default function Index({ auth, posts }) {
         if (page?.props?.message?.body) {
             toast(page.props.message.body, {
                 type: page.props.message.type,
-                position: "top-right",
+                position: "top-center",
             });
         }
     }, [page.props.message]);
