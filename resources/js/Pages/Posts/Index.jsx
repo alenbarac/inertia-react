@@ -34,6 +34,7 @@ export default function Index({ auth, posts }) {
         router.visit(route("posts.index"), {
             only: ["posts"],
             preserveScroll: true,
+            preserveState: true,
         });
     }
 
@@ -107,16 +108,16 @@ export default function Index({ auth, posts }) {
                         </button>
                     </form>
 
-                    {/*  <div className="py-3 flex justify-center">
+                    <div className="py-3 flex justify-center">
                         <button
                             onClick={refreshPosts}
                             className="text-sm text-indigo-700"
                         >
                             Refresh posts
                         </button>
-                    </div> */}
+                    </div>
 
-                    <div className="py-3 flex justify-center">
+                    {/* <div className="py-3 flex justify-center">
                         <Link
                             href={route("posts.index")}
                             only={["posts"]}
@@ -126,7 +127,7 @@ export default function Index({ auth, posts }) {
                         >
                             Refresh posts
                         </Link>
-                    </div>
+                    </div> */}
 
                     {posts?.data.map((post) => {
                         return (
