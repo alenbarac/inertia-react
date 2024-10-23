@@ -14,12 +14,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::create(
-            [
-                'name' => 'Admin',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt('password')
-            ]);
+        $user = User::where('name', 'Admin')->first();
 
 
         //
