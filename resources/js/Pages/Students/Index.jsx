@@ -1,3 +1,4 @@
+import Pagination from "@/Components/Pagination";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, router } from "@inertiajs/react";
 
@@ -136,6 +137,7 @@ export default function Index({ auth, students }) {
                                 ))}
                             </tbody>
                         </table>
+                        <Pagination meta={students.meta} />
                     </div>
                 </div>
             </div>
