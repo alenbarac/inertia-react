@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\StudentCreateRequest;
 use App\Http\Resources\ClassResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Classes;
