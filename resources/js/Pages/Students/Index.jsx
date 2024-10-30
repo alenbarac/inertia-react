@@ -6,7 +6,7 @@ export default function Index({ auth, students }) {
     if (students.data.length === 0) {
         return "Loading...";
     }
-    console.log(students);
+
     return (
         <AuthenticatedLayout
             user={auth.user}

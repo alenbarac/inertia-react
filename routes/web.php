@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('posts', PostsController::class);
     Route::resource('students', StudentController::class);
+    Route::resource('sections', SectionController::class)->only(['index']);
 });
 
 require __DIR__.'/auth.php';

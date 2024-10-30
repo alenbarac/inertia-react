@@ -1,7 +1,10 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, router, Link } from "@inertiajs/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Create({ classes, auth }) {
+    const [sections, setSections] = useState([]);
     const { data, setData, post, processing, errors } = useForm({
         name: "",
         email: "",
@@ -9,10 +12,23 @@ export default function Create({ classes, auth }) {
         section_id: "",
     });
 
+    useEffect(() => {
+        if (data.class_id) {
+            axios
+                .get(route("sections.index", { class_id: data.class_id }))
+                .then((response) => {
+                    setSections(response.data.data);
+                });
+        }
+    }, [data.class_id]);
+
     function submit(e) {
         e.preventDefault();
         post(route("students.store"));
     }
+
+    console.log("classes", classes);
+    console.log("sections", sections);
 
     return (
         <AuthenticatedLayout
@@ -127,9 +143,14 @@ export default function Create({ classes, auth }) {
                                                     <option value="">
                                                         Select a Class
                                                     </option>
-                                                    <option value="1">
-                                                        Class 1
-                                                    </option>
+                                                    {classes.data.map((c) => (
+                                                        <option
+                                                            key={c.id}
+                                                            value={c.id}
+                                                        >
+                                                            {c.name}
+                                                        </option>
+                                                    ))}
                                                 </select>
                                             </div>
 
@@ -154,9 +175,14 @@ export default function Create({ classes, auth }) {
                                                     <option value="">
                                                         Select a Section
                                                     </option>
-                                                    <option value="1">
-                                                        Section A
-                                                    </option>
+                                                    {sections.map((s) => (
+                                                        <option
+                                                            key={s.id}
+                                                            value={s.id}
+                                                        >
+                                                            {s.name}
+                                                        </option>
+                                                    ))}
                                                 </select>
                                             </div>
                                         </div>

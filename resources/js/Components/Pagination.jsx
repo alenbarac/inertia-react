@@ -1,7 +1,6 @@
 import { router } from "@inertiajs/react";
 
 export default function Pagination({ meta }) {
-    console.log(meta);
     const paginateLink = (url) => (e) => {
         e.preventDefault();
         router.visit(url, { preserveScroll: true });
