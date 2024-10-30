@@ -2,6 +2,18 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, router, Link } from "@inertiajs/react";
 
 export default function Create({ classes, auth }) {
+    const { data, setData, post, processing, errors } = useForm({
+        name: "",
+        email: "",
+        class_id: "",
+        section_id: "",
+    });
+
+    function submit(e) {
+        e.preventDefault();
+        post(route("students.store"));
+    }
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -32,7 +44,7 @@ export default function Create({ classes, auth }) {
 
                     <div className="lg:grid lg:grid-cols-12 lg:gap-x-5">
                         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
-                            <form>
+                            <form onSubmit={submit}>
                                 <div className="shadow sm:rounded-md sm:overflow-hidden">
                                     <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
                                         <div>
@@ -55,9 +67,21 @@ export default function Create({ classes, auth }) {
                                                 </label>
                                                 <input
                                                     type="text"
+                                                    value={data.name}
                                                     id="name"
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "name",
+                                                            e.target.value
+                                                        )
+                                                    }
                                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300"
                                                 />
+                                                {errors.name && (
+                                                    <div className="text-red-900">
+                                                        {errors.name}
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <div className="col-span-6 sm:col-span-3">
@@ -69,6 +93,13 @@ export default function Create({ classes, auth }) {
                                                 </label>
                                                 <input
                                                     type="email"
+                                                    value={data.email}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "email",
+                                                            e.target.value
+                                                        )
+                                                    }
                                                     id="email"
                                                     autoComplete="email"
                                                     className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
@@ -84,6 +115,13 @@ export default function Create({ classes, auth }) {
                                                 </label>
                                                 <select
                                                     id="class_id"
+                                                    value={data.class_id}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "class_id",
+                                                            e.target.value
+                                                        )
+                                                    }
                                                     className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
                                                 >
                                                     <option value="">
@@ -104,6 +142,13 @@ export default function Create({ classes, auth }) {
                                                 </label>
                                                 <select
                                                     id="section_id"
+                                                    value={data.section_id}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "section_id",
+                                                            e.target.value
+                                                        )
+                                                    }
                                                     className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
                                                 >
                                                     <option value="">
